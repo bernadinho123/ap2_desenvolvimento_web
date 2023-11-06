@@ -1,0 +1,72 @@
+body{
+    color:black;
+    background-color:whitesmoke;
+    text-align: center;
+    font-family: 'Nunito';
+    margin: 0 auto;
+}
+
+h1, h2{
+    position: sticky;
+   
+}
+
+#lista_imagens_feminino, #lista_imagens_masculino{
+    width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin: 0 auto;
+}
+
+/* Media Queries */
+
+#lista_imagens_feminino, #lista_imagens_masculino {
+    display: grid;
+    grid-template-columns: 1fr; /* Uma coluna por padrão */
+
+    /* Largura máxima para a lista de 1200px */
+    max-width: 1200px;
+    margin: 0 auto; /* Centralizar a lista */
+
+    /* Adiciona um espaço entre as imagens */
+    gap: 10px;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    #lista_imagens_feminino,
+    #lista_imagens_masculino {
+        grid-template-columns: 1fr 1fr; /* Duas colunas entre 769px e 1024px */
+        font-size: 8pt;
+    }
+}
+
+@media (min-width: 1025px) {
+    #lista_imagens_feminino,
+    #lista_imagens_masculino {
+        grid-template-columns: 1fr 1fr 1fr 1fr; /* Quatro colunas acima de 1024px */
+        font-size: 12pt; /* Ajuste opcional de tamanho de fonte */
+    }
+}
+header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color:black;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        input[type="password"] {
+            padding: 10px;
+            margin: 10px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bem-vindo à Página Protegida por Senha</h1>
+    <form onsubmit="return checkPassword()" id="passwordForm">
+        <label for="senha">Digite a senha para acessar:</label><br>
+        <input type="password" id="senha" name="senha" required><br>
+        <input type="submit" value="Acessar">
+        <p class="error-message" id="errorMessage" style="display: none;">Senha incorreta. Tente novamente.</p>
+    </form>
+
+    <script>
+        function checkPassword() {
+            var password = document.getElementById('senha').value;
+
+            if (password !== 'senha') {
+                document.getElementById('errorMessage').style.display = 'block';
+                return false;
+            } else {
+                window.location.href = 'home.html';
+                return false; // Evita que o formulário seja submetido
+            }
+        }
+    </script>
+</body>
+</html>
