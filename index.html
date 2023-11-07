@@ -3,7 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Verificação de Senha</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script>
+        function verificarSenhaERedirecionar() {
+            var senhaDigitada = document.getElementById('senha').value;
+            var senhaHash = CryptoJS.MD5(senhaDigitada).toString();
+
+            if (senhaHash === "e8d95a51f3af4a3b134bf6bb680a213a") { // Hash para "senha"
+                window.location.href = "home.html";
+            } else {
+                alert("Erro: Senha incorreta. Tente novamente.");
+            }
+        }
+
+        function verificarTecla(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Evita a submissão do formulário por padrão
+                verificarSenhaERedirecionar();
+            }
+        }
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +34,7 @@
             padding: 10px;
             margin: 10px;
         }
-        input[type="submit"] {
+        input[type="button"] {
             padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
@@ -23,26 +43,10 @@
     </style>
 </head>
 <body>
-    <h1>Bem-vindo à Página Protegida por Senha</h1>
-    <form onsubmit="return checkPassword()" id="passwordForm">
-        <label for="senha">Digite a senha para acessar:</label><br>
-        <input type="password" id="senha" name="senha" required><br>
-        <input type="submit" value="Acessar">
-        <p class="error-message" id="errorMessage" style="display: none;">Senha incorreta. Tente novamente.</p>
+    <h1>Digite a senha ("senha")</h1>
+    <form>
+        Senha: <input type="password" id="senha" onkeypress="verificarTecla(event)">
+        <input type="button" value="Enviar" onclick="verificarSenhaERedirecionar()">
     </form>
-
-    <script>
-        function checkPassword() {
-            var password = document.getElementById('senha').value;
-
-            if (password !== 'senha') {
-                document.getElementById('errorMessage').style.display = 'block';
-                return false;
-            } else {
-                window.location.href = 'home.html';
-                return false; // Evita que o formulário seja submetido
-            }
-        }
-    </script>
 </body>
 </html>
