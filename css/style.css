@@ -2,8 +2,20 @@ body{
     color:black;
     background-color:whitesmoke;
     text-align: center;
-    font-family: 'Nunito';
+    font-family: Arial, sans-serif;
     margin: 0 auto;
+    
+}
+
+input[type="password"] {
+  padding: 10px;
+  margin: 10px;
+}
+input[type="button"] {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
 }
 /* Estilos básicos para os cartões e contêiner */
 .atleta-card {
