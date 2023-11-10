@@ -38,3 +38,55 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".filtro-btn");
+    buttons.forEach(button => {
+        button.addEventListener("click", () => gerarSelecao(button.dataset.gender));
+    });
+
+    function gerarSelecao(genero) {
+        const selecaoContainer = document.getElementById("elenco");
+        selecaoContainer.innerHTML = ''; // Limpar conteúdo
+
+        if (genero === 'todos') {
+            fetchData('feminino');
+            fetchData('masculino');
+        } else {
+            fetchData(genero);
+        }
+    }
+
+    function fetchData(genero) {
+        fetch(`https://botafogo-atletas.mange.li/${genero}`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(jogador => {
+                    criarCartaoAtleta(jogador);
+                });
+            })
+            .catch(error => {
+                console.error(`Erro ao buscar elenco ${genero}:`, error);
+            });
+    }
+
+    function criarCartaoAtleta(jogador) {
+        const figurinhaJogador = document.createElement('div');
+        figurinhaJogador.className = 'atleta-card';
+
+        const fotoJogador = document.createElement('img');
+        fotoJogador.className = 'atleta-img';
+        fotoJogador.src = jogador.imagem;
+        fotoJogador.addEventListener('click', () => {
+            window.location.href = `atletas_totais.html?id=${jogador.id}`;
+        });
+
+        const detalhesAtleta = document.createElement('div');
+        detalhesAtleta.className = 'atleta-detalhes';
+        detalhesAtleta.innerHTML = `<p>Clique na imagem e veja mais!</p>`;
+
+        figurinhaJogador.appendChild(fotoJogador);
+        figurinhaJogador.appendChild(detalhesAtleta);
+
+        document.getElementById("elenco").appendChild(figurinhaJogador);
+    }
+});
