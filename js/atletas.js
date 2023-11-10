@@ -21,12 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     const figurinhajogador = document.createElement('div');
                     figurinhajogador.className = 'atleta-card';
 
-                    const imagemAtleta = document.createElement('img');
-                    imagemAtleta.className = 'atleta-img';
-                    imagemAtleta.src = jogador.imagem;
+                    const fotojogador = document.createElement('img');
+                    fotojogador.className = 'atleta-img';
+                    fotojogador.src = jogador.imagem;
 
                     // Adiciona evento de clique na imagem do atleta para redirecionar
-                    imagemAtleta.addEventListener('click', function() {
+                    fotojogador.addEventListener('click', function() {
                         // Redirecionar para a página do atleta com o ID na query string
                         window.location.href = `atletas_totais.html?id=${jogador.id}`;
                     });
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <p>Clique na imagem e veja mais!</p>
                     `;
 
-                    figurinhajogador.appendChild(imagemAtleta);
+                    figurinhajogador.appendChild(fotojogador);
                     figurinhajogador.appendChild(detalhesAtleta);
 
                     seleçãocontainer.appendChild(figurinhajogador);
