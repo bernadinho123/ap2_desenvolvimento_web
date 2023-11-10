@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elenco</title>
   <link rel="stylesheet" href="./css/style.css">
-  <script src="js/atletas_api.js"></script>
   <script src="js/atletas.js" defer></script>
 </head>
 
@@ -16,12 +15,16 @@
  
 
   
-  <header>
-    <button onclick="window.location.href='atletas_femininos.html'">atletas femininos</button>
-    <button onclick="window.location.href='atletas_masculinos.html'">atletas masculinos</button>
-    <button onclick="window.location.href='atletas_totais.html'">atletas totais</button>
-  </header>
- 
+  <div id="botoesElenco">
+    <button id="exibirFeminino" >Adicionar Elenco feminino</button>
+    <button id="exibirMasculino" >Adicionar Elenco masculino</button>
+    <button id="exibirtodos" >Adicionar Elenco (Ambos Gêneros)</button>        
+</div>
 
+
+<div id="elenco" class="elenco-container">     
+</div>
+
+<script src="script.js" defer></script>
 </body>
 </html>

@@ -1,36 +1,50 @@
-// Obtém as divs de elenco feminino e masculino (se existirem)
-const divElencoFeminino = document.getElementById("lista_imagens_feminino");
-const divElencoMasculino = document.getElementById("lista_imagens_masculino");
+document.addEventListener("DOMContentLoaded", function () {
+    const botaofeminino = document.getElementById("exibirFeminino");
+    const botaomasculino = document.getElementById("exibirMasculino");
+    const botaotodos = document.getElementById("exibirtodos");
 
-const elementosElenco = [divElencoFeminino, divElencoMasculino];
+    // Adicione manipuladores de evento aos botões
+    botaofeminino.addEventListener("click", () => gerarseleção("feminino"));
+    botaomasculino.addEventListener("click", () => gerarseleção("masculino"));
+    botaotodos.addEventListener("click", () => gerarseleção("all"));
 
-jogadores.forEach(jogador => {
-    const divElenco = document.createElement('div');
-    divElenco.className = 'jogador';
-    
-    divElenco.innerHTML = `
-        <img src="${jogador.imagem}" style="width: 95%;">
-        <p style="font-weight: bolder">${jogador.nome}</p>
-    `;
+    // Função para carregar o elenco com base no gênero
+    function gerarseleção(genero) {
+        const seleçãocontainer = document.getElementById("elenco");
+        seleçãocontainer.innerHTML = ''; // Limpar conteúdo
 
-    for (let key in jogador) {
-        divElenco.dataset[key] = jogador[key];
-    }
+        // Fazer uma solicitação para a API externa com base no gênero
+        fetch(`https://botafogo-atletas.mange.li/${genero}`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(jogador => {
+                    const figurinhajogador = document.createElement('div');
+                    figurinhajogador.className = 'atleta-card';
 
-    // Verifica se a div de elenco (divElencoFeminino ou divElencoMasculino) existe e a utiliza se disponível
-    elementosElenco.forEach(elemento => {
-        if (elemento && jogador.elenco === elemento.id.split('_')[2]) {
-            elemento.appendChild(divElenco);
+                    const imagemAtleta = document.createElement('img');
+                    imagemAtleta.className = 'atleta-img';
+                    imagemAtleta.src = jogador.imagem;
 
-            divElenco.addEventListener('click', (evento) => {
-                const divJogador = evento.currentTarget;
+                    // Adiciona evento de clique na imagem do atleta para redirecionar
+                    imagemAtleta.addEventListener('click', function() {
+                        // Redirecionar para a página do atleta com o ID na query string
+                        window.location.href = `atletas_totais.html?id=${jogador.id}`;
+                    });
 
-                for (let key in jogador) {
-                    localStorage.setItem(key, divJogador.dataset[key]);
-                }
+                    const detalhesAtleta = document.createElement('div');
+                    detalhesAtleta.className = 'atleta-detalhes';
+                    detalhesAtleta.innerHTML = `
+                        <p>Clique na imagem e veja mais!</p>
+                    `;
 
-                window.location.href = "./detalhes.html";
+                    figurinhajogador.appendChild(imagemAtleta);
+                    figurinhajogador.appendChild(detalhesAtleta);
+
+                    seleçãocontainer.appendChild(figurinhajogador);
+                });
+            })
+            .catch(error => {
+                console.error(`Erro ao buscar elenco ${genero}:`, error);
             });
-        }
-    });
+    }
 });

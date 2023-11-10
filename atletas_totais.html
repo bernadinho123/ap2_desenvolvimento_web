@@ -1,35 +1,55 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elenco</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <script src="js/atletas_api.js"></script>
-  <script src="js/atletas.js" defer></script>
+    <meta charset="UTF-8">
+    <title>Detalhes do Atleta</title>
+    <!-- Adicione quaisquer estilos ou links para CSS aqui -->
 </head>
-
 <body>
+    <h1>Detalhes do Atleta</h1>
+    <div id="detalhesAtleta">
+        <img id="imagemAtleta" src="" alt="Imagem do Atleta">
+        <h2 id="nomeAtleta">Nome do Atleta</h2>
+        <p id="posicaoAtleta">Posição do Atleta</p>
+        <p id="alturaAtleta">Altura do Atleta</p>
+        <p id="nascimentoAtleta">Data de Nascimento do Atleta</p>
+        <!-- Adicione mais elementos HTML para outras informações do atleta, como estatísticas, biografia, etc. -->
+    </div>
 
-  <h1>Elenco Profissional</h1>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const detalhesAtleta = document.getElementById("detalhesAtleta");
+            const imagemAtleta = document.getElementById("imagemAtleta");
+            const nomeAtleta = document.getElementById("nomeAtleta");
+            const posicaoAtleta = document.getElementById("posicaoAtleta");
+            const alturaAtleta = document.getElementById("alturaAtleta");
+            const nascimentoAtleta = document.getElementById("nascimentoAtleta");
 
-  <header>
-    <button onclick="window.location.href='atletas_femininos.html'">Atletas Femininos</button>
-    <button onclick="window.location.href='atletas_masculinos.html'">Atletas Masculinos</button>
-    <button onclick="window.location.href='atletas_totais.html'">Atletas Totais</button>
-    <button style="position: absolute; top: 0; right: 0;" onclick="voltarParaPaginaEspecifica()">Voltar</button>
-  </header>
-  <div id="lista_imagens_feminino"></div>
+            const params = new URLSearchParams(window.location.search);
+            const atletaId = params.get('id'); // ID do atleta presente na URL
 
-  <h2>Elenco Masculino</h2>
-  <div id="lista_imagens_masculino"></div>
+            // Função para buscar os detalhes do atleta de uma API
+            function buscarDetalhesAtletaPorId(id) {
+                // Exemplo de utilização de fetch para uma API fictícia de atletas
+                fetch(`https://botafogo-atletas.mange.li/${id}`)
+                    .then(response => response.json())
+                    .then(atleta => {
+                        // Atualiza os detalhes do atleta na página com base nos dados recebidos
+                        imagemAtleta.src = atleta.imagem;
+                        nomeAtleta.textContent = `Nome: ${atleta.nome}`;
+                        posicaoAtleta.textContent = `Posição: ${atleta.posicao}`;
+                        alturaAtleta.textContent = `Altura: ${atleta.altura}`;
+                        nascimentoAtleta.textContent = `Nascimento: ${atleta.nascimento}`;
+                    })
+                    .catch(error => {
+                        console.error('Erro ao buscar detalhes do atleta:', error);
+                        detalhesAtleta.innerHTML = "<p>Erro ao buscar detalhes do atleta.</p>";
+                    });
+            }
 
-  <script>
-    function voltarParaPaginaEspecifica() {
-      window.location.href = 'index.html'; // Substitua 'pagina_especifica.html' pelo caminho da página desejada
-    }
-  </script>
-
+            // Chama a função para buscar os detalhes do atleta com base no ID
+            buscarDetalhesAtletaPorId(atletaId);
+        });
+    </script>
 </body>
 </html>
