@@ -1,3 +1,10 @@
+body{
+    color:black;
+    background-color:whitesmoke;
+    text-align: center;
+    font-family: 'Nunito';
+    margin: 0 auto;
+}
 /* Estilos básicos para os cartões e contêiner */
 .atleta-card {
     display: inline-block;
@@ -40,6 +47,10 @@
     .atleta-card {
       width: calc(25% - 40px); /* Ajuste de largura para criar quatro colunas */
     }
+  }
+  header {
+    text-align: center;
+    margin-bottom: 20px;
   }
   button {
     padding: 10px 20px;
