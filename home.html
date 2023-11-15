@@ -8,13 +8,12 @@
   <link rel="stylesheet" href="./css/style.css">
   <script src="js/atletas.js" defer></script>
   <link rel="shortcut icon" href="images/pngwing.com.png" />
-    
   
 </head>
 
 <body>
 
-  <h1 style="font-size: larger; background-color:black; color: aliceblue;" > Atletas Botafogo 2023</h1>
+  <h1> Atletas Botafogo 2023</h1>
  
 
   
@@ -22,8 +21,15 @@
     <!-- Botões de filtro -->
     <button class="filtro-btn" data-gender="feminino">Feminino</button>
     <button class="filtro-btn" data-gender="masculino">Masculino</button>
-    <button class="filtro-btn" data-gender="todos">Todos</button>
+    <button class="filtro-btn" data-gender="all">Todos</button>
+
+    <select id="filtro-selecao" style="display: none;">
+      <option value="feminino">Feminino</option>
+      <option value="masculino">Masculino</option>
+      <option value="all">Todos</option>
+  </select>
 </div>
+
 
 
 <div id="elenco" class="elenco-container">     

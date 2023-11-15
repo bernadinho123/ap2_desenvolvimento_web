@@ -1,11 +1,20 @@
 body{
-    color:black;
-    background-color:whitesmoke;
+  background-image: url('../images/botafogo.fundo.webp');
+    background-size: cover; /* Isso ajusta o tamanho da imagem para cobrir toda a área do elemento pai */
+    background-position: initial; /* Isso centraliza a imagem */
+    color:white;
+    
     text-align: center;
     font-family: Arial, sans-serif;
     margin: 0 auto;
     
+    
 }
+
+h1{
+  font-size: larger; background-color:black; color: aliceblue;
+}
+
 
 input[type="password"] {
   padding: 10px;
@@ -13,7 +22,7 @@ input[type="password"] {
 }
 input[type="button"] {
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color:dimgray;
   color: white;
   border: none;
 }
@@ -82,4 +91,12 @@ input[type="button"] {
   button:hover {
     background-color: #45a049;
   }
-  
+  @media only screen and (max-width: 768px) {
+    .filtro-btn {
+        display: none; /* Oculta os botões */
+    }
+
+    #filtro-selecao {
+        display: inline-block; /* Mostra o botão de seleção */
+    }
+}
