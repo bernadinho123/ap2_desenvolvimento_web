@@ -1,8 +1,9 @@
 function verificarSenhaERedirecionar() {
-    var senhaDigitada = document.getElementById('senha').value;
+    var senhaDigitada = document.getElementById('vasco').value;
     var senhaHash = CryptoJS.MD5(senhaDigitada).toString();
 
-    if (senhaHash === "e8d95a51f3af4a3b134bf6bb680a213a") { // Hash para "senha"
+    if (senhaHash === "1b4543f0bacad537da30517cd15dbb22") {
+         localStorage.setItem('validado','vasco');
         window.location.href = "home.html";
     } else {
         alert("Erro: Senha incorreta. Tente novamente.");

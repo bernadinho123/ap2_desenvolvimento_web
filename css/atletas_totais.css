@@ -41,3 +41,27 @@ body {
     font-weight: bolder;
     font-size: x-large;
 }
+#validacao{
+    color: red;
+    font-weight: bolder;
+    font-size: x-large;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+#volta{
+    background-color: gray;
+    color: black;
+    font-size: 30px;
+    margin: 24px 16px;
+    padding: 10px 16px;
+    border-style: none;
+    justify-content: center; 
+    cursor: pointer;
+    border-radius: 3px;
+    
+}
+
+

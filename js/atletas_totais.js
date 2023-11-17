@@ -6,10 +6,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const alturaAtleta = document.getElementById("alturaAtleta");
     const nascimentoAtleta = document.getElementById("nascimentoAtleta");
     const historiaAtleta = document.getElementById("historiaAtleta");
+    const voltar = document.getElementById("volta");
+    voltar.addEventListener("click", () => {
+        window.location.href = `home.html`;
+    });
+
 
     const params = new URLSearchParams(window.location.search);
     const atletaId = params.get('id'); // ID do atleta presente na URL
+    const validado = localStorage.getItem('validado');
 
+    if (!validado || validado !== 'vasco') {
+        document.getElementById("validacao").style.display = 'block';
+        document.getElementById("detalhesAtleta").style.display = 'none';
+    
+        document.getElementById("volta").addEventListener("click", () => {
+            localStorage.removeItem('validado');
+            window.location.href = 'index.html';
+        });
+    }
+    
     // Função para buscar os detalhes do atleta de uma API
     function buscarDetalhesAtletaPorId(id) {
         if (id > 60) {
